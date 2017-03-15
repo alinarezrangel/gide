@@ -22,8 +22,14 @@ namespace GIDE
 {
 	namespace TreeFileSystem
 	{
+		Glib::ustring get_iconname_from_filetype(FileType tp)
+		{
+			return GIDE_ICONSDIR "/" GIDE_FILEICONSDIR "/text.png";
+		}
+
 		ModelColumn::ModelColumn(void)
 		{
+			this->add(this->icon);
 			this->add(this->filetype);
 			this->add(this->filename);
 		}
@@ -31,21 +37,29 @@ namespace GIDE
 		TreeEntry::TreeEntry(void)
 			: filetype(FileType::FOLDER),
 				filename("")
-		{}
+		{
+			this->icon = Gdk::Pixbuf::create_from_file(get_iconname_from_filetype(this->filetype));
+		}
 
 		TreeEntry::TreeEntry(FileType ft)
 			: filetype(ft),
 				filename("")
-		{}
+		{
+			this->icon = Gdk::Pixbuf::create_from_file(get_iconname_from_filetype(this->filetype));
+		}
 
 		TreeEntry::TreeEntry(const Glib::ustring& fn)
 			: filetype(FileType::FOLDER),
 				filename(fn)
-		{}
+		{
+			this->icon = Gdk::Pixbuf::create_from_file(get_iconname_from_filetype(this->filetype));
+		}
 
 		TreeEntry::TreeEntry(FileType ft, const Glib::ustring& fn)
 			: filetype(ft),
 				filename(fn)
-		{}
+		{
+			this->icon = Gdk::Pixbuf::create_from_file(get_iconname_from_filetype(this->filetype));
+		}
 	}
 }

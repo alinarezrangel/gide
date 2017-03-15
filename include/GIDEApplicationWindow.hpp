@@ -49,10 +49,13 @@ namespace GIDE
 
 		private:
 			Glib::RefPtr<Gtk::Builder> ref_builder;
+
 			Glib::RefPtr<Gsv::Buffer> source_buffer;
 			Gsv::View source_view;
+
 			Glib::RefPtr<Gtk::TreeStore> project_fs_model;
 			TreeFileSystem::ModelColumn project_fs_model_columns;
+			Gtk::CellRendererPixbuf project_fs_rendererpb;
 	};
 }
 

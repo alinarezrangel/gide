@@ -50,10 +50,13 @@ namespace GIDE
 			FILE_INFO // md, mkd, markdown
 		};
 
+		Glib::ustring get_iconname_from_filetype(FileType tp);
+
 		struct ModelColumn : public Gtk::TreeModel::ColumnRecord
 		{
 			ModelColumn(void);
 
+			Gtk::TreeModelColumn<Glib::RefPtr<Gdk::Pixbuf>> icon;
 			Gtk::TreeModelColumn<FileType> filetype;
 			Gtk::TreeModelColumn<Glib::ustring> filename;
 		};
@@ -65,6 +68,7 @@ namespace GIDE
 			TreeEntry(const Glib::ustring& fn);
 			TreeEntry(FileType ft, const Glib::ustring& fn);
 
+			Glib::RefPtr<Gdk::Pixbuf> icon;
 			FileType filetype;
 			Glib::ustring filename;
 		};

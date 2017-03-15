@@ -83,14 +83,24 @@ namespace GIDE
 		}
 
 		filesystem_view->set_model(this->project_fs_model);
+		int numcols = filesystem_view->append_column(
+			_("Icon"),
+			this->project_fs_rendererpb
+		);
 		filesystem_view->append_column_numeric(
 			_("Type"),
 			this->project_fs_model_columns.filetype,
-			_("%d")
+			"%d"
 		);
 		filesystem_view->append_column(
 			_("Filename"),
 			this->project_fs_model_columns.filename
+		);
+
+		filesystem_view->get_column(numcols - 1)->add_attribute(
+			this->project_fs_rendererpb,
+			"pixbuf",
+			this->project_fs_model_columns.icon
 		);
 
 		this->add_column_to_project_view(
@@ -131,6 +141,7 @@ namespace GIDE
 	)
 	{
 		Gtk::TreeModel::Row row = *this->project_fs_model->append();
+		row[this->project_fs_model_columns.icon] = entry.icon;
 		row[this->project_fs_model_columns.filetype] = entry.filetype;
 		row[this->project_fs_model_columns.filename] = entry.filename;
 	}
