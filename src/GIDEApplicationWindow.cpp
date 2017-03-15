@@ -24,9 +24,42 @@ namespace GIDE
 		BaseObjectType* c_object,
 		const Glib::RefPtr<Gtk::Builder>& ref_builder
 	)
-		: Gtk::ApplicationWindow(c_object)
+		: Gtk::ApplicationWindow(c_object),
+			ref_builder(ref_builder),
+			source_buffer(
+				Gsv::Buffer::create(
+					Gsv::LanguageManager::get_default()->get_language("cpp")
+				)
+			),
+			source_view()
 	{
-		//
+		this->source_view.set_source_buffer(this->source_buffer);
+		this->source_view.set_show_line_numbers(true);
+		this->source_view.set_tab_width(2);
+		this->source_view.set_auto_indent(true);
+		this->source_view.set_insert_spaces_instead_of_tabs(false);
+		this->source_view.set_show_right_margin(true);
+		this->source_view.set_highlight_current_line(true);
+		this->source_view.set_indent_on_tab(true);
+		this->source_view.set_monospace(true);
+		this->source_view.set_right_margin_position(80);
+
+		this->source_buffer->set_highlight_matching_brackets(true);
+		this->source_buffer->set_highlight_syntax(true);
+
+		Gtk::Viewport* viewport = nullptr;
+		ref_builder->get_widget("viewport", viewport);
+
+		if(!viewport)
+		{
+			throw std::runtime_error(
+				"No viewport named \"viewport\" on the Glade file"
+			);
+		}
+
+		viewport->add(this->source_view);
+
+		this->show_all();
 	}
 
 	ApplicationWindow::~ApplicationWindow(void)

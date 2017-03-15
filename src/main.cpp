@@ -17,6 +17,7 @@
 *****************************************************************************/
 
 #include <gtkmm.h>
+#include <gtksourceviewmm.h>
 
 #include <clocale>
 
@@ -32,6 +33,8 @@ int main(int argc, char** argv)
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
 	*/
+
+	Gsv::init();
 
 	GIDE::Application application;
 

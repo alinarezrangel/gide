@@ -21,6 +21,7 @@
 
 #include <gtkmm.h>
 #include <glibmm/i18n.h>
+#include <gtksourceviewmm.h>
 
 #include <exception>
 #include <stdexcept>
@@ -43,7 +44,9 @@ namespace GIDE
 			static ApplicationWindow* create(void);
 
 		private:
-			//Glib::RefPtr<Gtk::Builder>& ref_builder;
+			Glib::RefPtr<Gtk::Builder> ref_builder;
+			Glib::RefPtr<Gsv::Buffer> source_buffer;
+			Gsv::View source_view;
 	};
 }
 

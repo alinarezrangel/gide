@@ -1,7 +1,7 @@
 CXX=g++
 
-CFLAGS=-std=c++11 -g -Wall -Iinclude `pkg-config --cflags gtkmm-3.0`
-CLIBS=`pkg-config --libs gtkmm-3.0`
+CFLAGS=-std=c++11 -g -Wall -Iinclude `pkg-config --cflags gtkmm-3.0 gtksourceviewmm-3.0`
+CLIBS=`pkg-config --libs gtkmm-3.0 gtksourceviewmm-3.0`
 
 TARGET=gide.out
 
