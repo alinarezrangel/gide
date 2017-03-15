@@ -1,5 +1,5 @@
 /*****************************************************************************
-*    GIDEApplicationWindow.hpp: The basic window of the application.
+*    GIDEApplication.hpp: Manages all GIDE application commands.
 *    Copyright (C) 2017  Alejandro Linarez Rangel
 *
 *    This program is free software: you can redistribute it and/or modify
@@ -16,47 +16,27 @@
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
 
-#ifndef __GIDE_APPLICATION_WINDOW_HPP__
-#define __GIDE_APPLICATION_WINDOW_HPP__ 1
+#ifndef __GIDE_APPLICATION_HPP__
+#define __GIDE_APPLICATION_HPP__ 1
 
 #include <gtkmm.h>
 #include <glibmm/i18n.h>
-#include <gtksourceviewmm.h>
-
-#include <exception>
-#include <stdexcept>
 
 #include <clocale>
 
-#include "GIDEMacros.hpp"
-#include "GIDEFileSystemTreeModel.hpp"
+#include "Macros.hpp"
 
 namespace GIDE
 {
-	class ApplicationWindow : public Gtk::ApplicationWindow
+	class Application : public Gtk::Application
 	{
 		public:
-			explicit ApplicationWindow(
-				BaseObjectType* c_object,
-				const Glib::RefPtr<Gtk::Builder>& ref_builder
-			);
-			virtual ~ApplicationWindow(void);
-
-			static ApplicationWindow* create(void);
+			explicit Application(void);
+			virtual ~Application(void);
 
 		protected:
-			void add_column_to_project_view(const TreeFileSystem::TreeEntry& entry);
-
-		private:
-			Glib::RefPtr<Gtk::Builder> ref_builder;
-
-			Glib::RefPtr<Gsv::Buffer> source_buffer;
-			Gsv::View source_view;
-
-			Glib::RefPtr<Gtk::TreeStore> project_fs_model;
-			TreeFileSystem::ModelColumn project_fs_model_columns;
-			Gtk::CellRendererPixbuf project_fs_rendererpb;
+			virtual int on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>&);
 	};
 }
 
-#endif /* ~__GIDE_APPLICATION_WINDOW_HPP__ */
+#endif /* ~__GIDE_APPLICATION_HPP__ */

@@ -21,9 +21,9 @@
 
 #include <clocale>
 
-#include "GIDEMacros.hpp"
-#include "GIDEApplication.hpp"
-#include "GIDEApplicationWindow.hpp"
+#include "Macros.hpp"
+#include "Application.hpp"
+#include "ApplicationWindow.hpp"
 
 int main(int argc, char** argv)
 {

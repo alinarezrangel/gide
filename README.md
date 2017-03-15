@@ -13,6 +13,17 @@ GTK+ 3 easy and intuitive.
 - [ ] GUI designer
 - [ ] GTKSourceView
 
+## Project structure ##
+
+* `docs/`: Documentation about GIDE
+* `icons/`: All application icons, the subfolders are: `files/` icons for
+files and folders on the project view. `app/` for the application icon
+in 16x16, 22x22, 24x24, 32x32 and 64x64.
+* `in_use_help/`: Help files to show inside the IDE.
+* `include/`: C++ header files.
+* `src/`: C++ source files.
+* `ui/`: Glade files.
+
 ## Contributing ##
 
 We use the [contributor covenant code of conduct](CODEOFCONDUCT.md)

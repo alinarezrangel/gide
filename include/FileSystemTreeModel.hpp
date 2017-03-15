@@ -24,7 +24,7 @@
 
 #include <clocale>
 
-#include "GIDEMacros.hpp"
+#include "Macros.hpp"
 
 namespace GIDE
 {
