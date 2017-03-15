@@ -24,6 +24,6 @@
 #define GIDE_VERSION_MINOR 1
 #define GIDE_VERSION_PATCH 0
 
-#define GIDE_LOCALEDIR "locale"
+#define GIDE_LOCALEDIR "po"
 
 #endif /* ~__GIDE_MACROS_HPP__ */

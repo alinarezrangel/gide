@@ -32,11 +32,17 @@ namespace GIDE
 	{
 	}
 
-	int Application::on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line)
+	int Application::on_command_line(
+		const Glib::RefPtr<Gio::ApplicationCommandLine>& command_line
+	)
 	{
 		Glib::OptionContext context;
 
-		Glib::OptionGroup main_options("options", _("Main options"));
+		Glib::OptionGroup main_options(
+			"options",
+			_("Main options"),
+			_("Show help of all general options")
+		);
 
 		Glib::OptionEntry version_option;
 		bool version_option_flag = false;

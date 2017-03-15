@@ -26,9 +26,11 @@
 int main(int argc, char** argv)
 {
 	setlocale(LC_ALL, "");
+	/*
 	bindtextdomain (GETTEXT_PACKAGE, GIDE_LOCALEDIR);
 	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
 	textdomain (GETTEXT_PACKAGE);
+	*/
 
 	GIDE::Application application;
 
