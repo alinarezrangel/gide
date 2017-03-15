@@ -1,5 +1,5 @@
 /*****************************************************************************
-*    GIDEMacros.hpp: Basic macros with constant data.
+*    GIDEFileSystemTreeModel.cpp: File System abstractiong for use in TreeViews.
 *    Copyright (C) 2017  Alejandro Linarez Rangel
 *
 *    This program is free software: you can redistribute it and/or modify
@@ -16,17 +16,36 @@
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
 
-#ifndef __GIDE_MACROS_HPP__
-#define __GIDE_MACROS_HPP__ 1
+#include "GIDEFileSystemTreeModel.hpp"
 
-#define GIDE_VERSION "0.1.0"
-#define GIDE_VERSION_MAJOR 0
-#define GIDE_VERSION_MINOR 1
-#define GIDE_VERSION_PATCH 0
+namespace GIDE
+{
+	namespace TreeFileSystem
+	{
+		ModelColumn::ModelColumn(void)
+		{
+			this->add(this->filetype);
+			this->add(this->filename);
+		}
 
-#define GIDE_LOCALEDIR "po"
-#define GIDE_GLADEUIDIR "ui"
-#define GIDE_ICONSDIR "icons"
-#define GIDE_FILEICONSDIR "files"
+		TreeEntry::TreeEntry(void)
+			: filetype(FileType::FOLDER),
+				filename("")
+		{}
 
-#endif /* ~__GIDE_MACROS_HPP__ */
+		TreeEntry::TreeEntry(FileType ft)
+			: filetype(ft),
+				filename("")
+		{}
+
+		TreeEntry::TreeEntry(const Glib::ustring& fn)
+			: filetype(FileType::FOLDER),
+				filename(fn)
+		{}
+
+		TreeEntry::TreeEntry(FileType ft, const Glib::ustring& fn)
+			: filetype(ft),
+				filename(fn)
+		{}
+	}
+}

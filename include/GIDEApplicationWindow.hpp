@@ -29,6 +29,7 @@
 #include <clocale>
 
 #include "GIDEMacros.hpp"
+#include "GIDEFileSystemTreeModel.hpp"
 
 namespace GIDE
 {
@@ -43,10 +44,15 @@ namespace GIDE
 
 			static ApplicationWindow* create(void);
 
+		protected:
+			void add_column_to_project_view(const TreeFileSystem::TreeEntry& entry);
+
 		private:
 			Glib::RefPtr<Gtk::Builder> ref_builder;
 			Glib::RefPtr<Gsv::Buffer> source_buffer;
 			Gsv::View source_view;
+			Glib::RefPtr<Gtk::TreeStore> project_fs_model;
+			TreeFileSystem::ModelColumn project_fs_model_columns;
 	};
 }
 

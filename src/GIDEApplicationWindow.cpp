@@ -31,8 +31,13 @@ namespace GIDE
 					Gsv::LanguageManager::get_default()->get_language("cpp")
 				)
 			),
-			source_view()
+			source_view(),
+			project_fs_model_columns()
 	{
+		this->project_fs_model = Gtk::TreeStore::create(project_fs_model_columns);
+
+		this->resize(500, 300);
+
 		this->source_view.set_source_buffer(this->source_buffer);
 		this->source_view.set_show_line_numbers(true);
 		this->source_view.set_tab_width(2);
@@ -57,7 +62,43 @@ namespace GIDE
 			);
 		}
 
+		Gtk::Paned* panels = nullptr;
+		ref_builder->get_widget("panels", panels);
+
+		if(!panels)
+		{
+			throw std::runtime_error(
+				"No paned named \"panels\" on the Glade file"
+			);
+		}
+
+		Gtk::TreeView* filesystem_view = nullptr;
+		ref_builder->get_widget("project_filesystem_view", filesystem_view);
+
+		if(!filesystem_view)
+		{
+			throw std::runtime_error(
+				"No TreeView named \"project_filesystem_view\" on the Glade file"
+			);
+		}
+
+		filesystem_view->set_model(this->project_fs_model);
+		filesystem_view->append_column_numeric(
+			_("Type"),
+			this->project_fs_model_columns.filetype,
+			_("%d")
+		);
+		filesystem_view->append_column(
+			_("Filename"),
+			this->project_fs_model_columns.filename
+		);
+
+		this->add_column_to_project_view(
+			TreeFileSystem::TreeEntry("project.pro")
+		);
+
 		viewport->add(this->source_view);
+		panels->set_position(100);
 
 		this->show_all();
 	}
@@ -83,5 +124,14 @@ namespace GIDE
 		}
 
 		return window;
+	}
+
+	void ApplicationWindow::add_column_to_project_view(
+		const TreeFileSystem::TreeEntry& entry
+	)
+	{
+		Gtk::TreeModel::Row row = *this->project_fs_model->append();
+		row[this->project_fs_model_columns.filetype] = entry.filetype;
+		row[this->project_fs_model_columns.filename] = entry.filename;
 	}
 }

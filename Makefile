@@ -8,7 +8,7 @@ TARGET=gide.out
 SRC=src
 INC=include
 
-OBJS=GIDEApplication.o GIDEApplicationWindow.o
+OBJS=GIDEApplication.o GIDEApplicationWindow.o GIDEFileSystemTreeModel.o
 
 TAGSFILE=TAGS
 
@@ -19,6 +19,9 @@ GIDEApplication.o: $(SRC)/GIDEApplication.cpp $(INC)/GIDEApplication.hpp
 	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
 
 GIDEApplicationWindow.o: $(SRC)/GIDEApplicationWindow.cpp $(INC)/GIDEApplicationWindow.hpp
+	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
+
+GIDEFileSystemTreeModel.o: $(SRC)/GIDEFileSystemTreeModel.cpp $(INC)/GIDEFileSystemTreeModel.hpp
 	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
 
 tags:
