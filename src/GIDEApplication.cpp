@@ -22,7 +22,7 @@ namespace GIDE
 {
 	Application::Application(void)
 		: Gtk::Application(
-			"org.g_ide.application",
+			"org.gide.application",
 			Gio::APPLICATION_HANDLES_COMMAND_LINE
 			)
 	{

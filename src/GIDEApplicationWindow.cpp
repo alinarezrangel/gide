@@ -1,5 +1,5 @@
 /*****************************************************************************
-*    main.cpp: Starts the GIDE.
+*    GIDEApplicationWindow.cpp: The basic window of the application.
 *    Copyright (C) 2017  Alejandro Linarez Rangel
 *
 *    This program is free software: you can redistribute it and/or modify
@@ -16,26 +16,39 @@
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
 
-#include <gtkmm.h>
-
-#include <clocale>
-
-#include "GIDEMacros.hpp"
-#include "GIDEApplication.hpp"
 #include "GIDEApplicationWindow.hpp"
 
-int main(int argc, char** argv)
+namespace GIDE
 {
-	setlocale(LC_ALL, "");
-	/*
-	bindtextdomain (GETTEXT_PACKAGE, GIDE_LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain (GETTEXT_PACKAGE);
-	*/
+	ApplicationWindow::ApplicationWindow(
+		BaseObjectType* c_object,
+		const Glib::RefPtr<Gtk::Builder>& ref_builder
+	)
+		: Gtk::ApplicationWindow(c_object)
+	{
+		//
+	}
 
-	GIDE::Application application;
+	ApplicationWindow::~ApplicationWindow(void)
+	{
+	}
 
-	auto window = GIDE::ApplicationWindow::create();
+	ApplicationWindow* ApplicationWindow::create(void)
+	{
+		auto ref_builder = Gtk::Builder::create_from_file(
+			GIDE_GLADEUIDIR "/main_window_nonended.glade"
+		);
 
-	return application.run(*window, argc, argv);
+		ApplicationWindow* window = nullptr;
+		ref_builder->get_widget_derived("main_window", window);
+
+		if(!window)
+		{
+			throw std::runtime_error(
+				"No window named \"main_window\" on the Glade file"
+			);
+		}
+
+		return window;
+	}
 }

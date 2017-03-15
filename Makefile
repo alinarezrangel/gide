@@ -8,7 +8,7 @@ TARGET=gide.out
 SRC=src
 INC=include
 
-OBJS=GIDEApplication.o
+OBJS=GIDEApplication.o GIDEApplicationWindow.o
 
 TAGSFILE=TAGS
 
@@ -16,6 +16,9 @@ $(TARGET): $(SRC)/main.cpp $(OBJS)
 	$(CXX) $(CFLAGS) $< $(OBJS) $(CLIBS) -o $@
 
 GIDEApplication.o: $(SRC)/GIDEApplication.cpp $(INC)/GIDEApplication.hpp
+	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
+
+GIDEApplicationWindow.o: $(SRC)/GIDEApplicationWindow.cpp $(INC)/GIDEApplicationWindow.hpp
 	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
 
 tags:

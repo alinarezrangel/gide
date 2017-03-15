@@ -1,5 +1,5 @@
 /*****************************************************************************
-*    main.cpp: Starts the GIDE.
+*    GIDEApplicationWindow.hpp: The basic window of the application.
 *    Copyright (C) 2017  Alejandro Linarez Rangel
 *
 *    This program is free software: you can redistribute it and/or modify
@@ -16,26 +16,35 @@
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
 
+#ifndef __GIDE_APPLICATION_WINDOW_HPP__
+#define __GIDE_APPLICATION_WINDOW_HPP__ 1
+
 #include <gtkmm.h>
+#include <glibmm/i18n.h>
+
+#include <exception>
+#include <stdexcept>
 
 #include <clocale>
 
 #include "GIDEMacros.hpp"
-#include "GIDEApplication.hpp"
-#include "GIDEApplicationWindow.hpp"
 
-int main(int argc, char** argv)
+namespace GIDE
 {
-	setlocale(LC_ALL, "");
-	/*
-	bindtextdomain (GETTEXT_PACKAGE, GIDE_LOCALEDIR);
-	bind_textdomain_codeset (GETTEXT_PACKAGE, "UTF-8");
-	textdomain (GETTEXT_PACKAGE);
-	*/
+	class ApplicationWindow : public Gtk::ApplicationWindow
+	{
+		public:
+			explicit ApplicationWindow(
+				BaseObjectType* c_object,
+				const Glib::RefPtr<Gtk::Builder>& ref_builder
+			);
+			virtual ~ApplicationWindow(void);
 
-	GIDE::Application application;
+			static ApplicationWindow* create(void);
 
-	auto window = GIDE::ApplicationWindow::create();
-
-	return application.run(*window, argc, argv);
+		private:
+			//Glib::RefPtr<Gtk::Builder>& ref_builder;
+	};
 }
+
+#endif /* ~__GIDE_APPLICATION_WINDOW_HPP__ */

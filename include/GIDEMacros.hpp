@@ -25,5 +25,6 @@
 #define GIDE_VERSION_PATCH 0
 
 #define GIDE_LOCALEDIR "po"
+#define GIDE_GLADEUIDIR "ui"
 
 #endif /* ~__GIDE_MACROS_HPP__ */
