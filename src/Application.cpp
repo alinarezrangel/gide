@@ -1,5 +1,5 @@
 /*****************************************************************************
-*    GIDEApplication.cpp: Manages all GIDE application commands.
+*    Application.cpp: Manages all GIDE application commands.
 *    Copyright (C) 2017  Alejandro Linarez Rangel
 *
 *    This program is free software: you can redistribute it and/or modify

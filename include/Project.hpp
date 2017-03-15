@@ -1,5 +1,5 @@
 /*****************************************************************************
-*    Application.hpp: Manages all GIDE application commands.
+*    Project.hpp: Manages a project.
 *    Copyright (C) 2017  Alejandro Linarez Rangel
 *
 *    This program is free software: you can redistribute it and/or modify
@@ -15,28 +15,3 @@
 *    You should have received a copy of the GNU General Public License
 *    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
-
-#ifndef __GIDE_APPLICATION_HPP__
-#define __GIDE_APPLICATION_HPP__ 1
-
-#include <gtkmm.h>
-#include <glibmm/i18n.h>
-
-#include <clocale>
-
-#include "Macros.hpp"
-
-namespace GIDE
-{
-	class Application : public Gtk::Application
-	{
-		public:
-			explicit Application(void);
-			virtual ~Application(void);
-
-		protected:
-			virtual int on_command_line(const Glib::RefPtr<Gio::ApplicationCommandLine>&);
-	};
-}
-
-#endif /* ~__GIDE_APPLICATION_HPP__ */

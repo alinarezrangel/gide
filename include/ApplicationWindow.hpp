@@ -1,5 +1,5 @@
 /*****************************************************************************
-*    GIDEApplicationWindow.hpp: The basic window of the application.
+*    ApplicationWindow.hpp: The basic window of the application.
 *    Copyright (C) 2017  Alejandro Linarez Rangel
 *
 *    This program is free software: you can redistribute it and/or modify

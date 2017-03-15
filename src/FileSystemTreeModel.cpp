@@ -1,5 +1,5 @@
 /*****************************************************************************
-*    GIDEFileSystemTreeModel.cpp: File System abstractiong for use in TreeViews.
+*    FileSystemTreeModel.cpp: File System abstractiong for use in TreeViews.
 *    Copyright (C) 2017  Alejandro Linarez Rangel
 *
 *    This program is free software: you can redistribute it and/or modify

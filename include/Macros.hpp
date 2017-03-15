@@ -1,5 +1,5 @@
 /*****************************************************************************
-*    GIDEMacros.hpp: Basic macros with constant data.
+*    Macros.hpp: Basic macros with constant data.
 *    Copyright (C) 2017  Alejandro Linarez Rangel
 *
 *    This program is free software: you can redistribute it and/or modify
