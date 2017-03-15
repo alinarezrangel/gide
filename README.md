@@ -1,4 +1,4 @@
-# G_IDE - The best IDE for GTK+ 3 #
+# GIDE - The best IDE for GTK+ 3 #
 
 GTK+ 3 does not have a complete IDE, generally you use your favourite
 IDE and creates the GUI with Glade. Now this ends. G_IDE includes features
