@@ -24,6 +24,9 @@ namespace GIDE
 	{
 		Glib::ustring get_iconname_from_filetype(FileType tp)
 		{
+			if(tp == FileType::FOLDER)
+				return GIDE_ICONSDIR "/" GIDE_FILEICONSDIR "/folder.png";
+
 			return GIDE_ICONSDIR "/" GIDE_FILEICONSDIR "/text.png";
 		}
 
