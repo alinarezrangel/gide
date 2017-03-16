@@ -29,4 +29,11 @@
 #define GIDE_ICONSDIR "icons"
 #define GIDE_FILEICONSDIR "files"
 
+#define GIDE_PROJECT_FILENAME "project.pro"
+
+#define GIDE_FILENAME_UI "ui"
+#define GIDE_FILENAME_INCLUDE "include/"
+#define GIDE_FILENAME_SRC "src/"
+#define GIDE_FILENAME_DOCS "docs/"
+
 #endif /* ~__GIDE_MACROS_HPP__ */
