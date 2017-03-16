@@ -23,13 +23,14 @@
 #include <glibmm/i18n.h>
 #include <gtksourceviewmm.h>
 
+#include <clocale>
+
 #include <exception>
 #include <stdexcept>
 
-#include <clocale>
-
 #include "Macros.hpp"
 #include "FileSystemTreeModel.hpp"
+#include "Project.hpp"
 
 namespace GIDE
 {
@@ -54,6 +55,8 @@ namespace GIDE
 				const Gtk::TreeModel::Row& rw
 			);
 
+			virtual void on_new_project_action(const Glib::VariantBase& param);
+
 		private:
 			Glib::RefPtr<Gtk::Builder> ref_builder;
 
@@ -63,6 +66,8 @@ namespace GIDE
 			Glib::RefPtr<Gtk::TreeStore> project_fs_model;
 			TreeFileSystem::ModelColumn project_fs_model_columns;
 			Gtk::CellRendererPixbuf project_fs_rendererpb;
+
+			Glib::RefPtr<Gio::SimpleAction> new_project_action;
 	};
 }
 

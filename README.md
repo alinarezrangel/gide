@@ -11,7 +11,7 @@ GTK+ 3 easy and intuitive.
 - [ ] Code Generation
 - [ ] Support for C and C++
 - [ ] GUI designer
-- [ ] GTKSourceView
+- [ x ] GTKSourceView
 
 ## Project structure ##
 

@@ -32,7 +32,10 @@ namespace GIDE
 				)
 			),
 			source_view(),
-			project_fs_model_columns()
+			project_fs_model_columns(),
+			new_project_action(
+				Gio::SimpleAction::create("new_project")
+			)
 	{
 		this->project_fs_model = Gtk::TreeStore::create(project_fs_model_columns);
 
@@ -111,6 +114,14 @@ namespace GIDE
 			row
 		);
 
+		this->new_project_action->signal_activate()
+			.connect(sigc::mem_fun(
+				this,
+				&ApplicationWindow::on_new_project_action
+			));
+
+		this->add_action(this->new_project_action);
+
 		viewport->add(this->source_view);
 		panels->set_position(200);
 
@@ -165,5 +176,36 @@ namespace GIDE
 		row[this->project_fs_model_columns.filename] = entry.filename;
 
 		return row;
+	}
+
+	void ApplicationWindow::on_new_project_action(
+		const Glib::VariantBase& param
+	)
+	{
+		Project new_project;
+		ProjectMetadata metadata;
+
+		Gtk::FileChooserDialog file_dialog(
+			*this,
+			_("Select a folder for create the new project"),
+			Gtk::FILE_CHOOSER_ACTION_CREATE_FOLDER
+		);
+
+		file_dialog.set_modal(true);
+
+		int response = file_dialog.run();
+
+		if(response != Gtk::RESPONSE_ACCEPT)
+			return;
+
+		Glib::ustring filename = Glib::ustring::filename_to_utf8(
+			file_dialog.get_filename()
+		);
+
+		new_project.create(
+			filename,
+			BuiltinProjectTemplates::BasicCPPTemplate,
+			metadata
+		);
 	}
 }
