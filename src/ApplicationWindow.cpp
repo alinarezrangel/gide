@@ -103,12 +103,16 @@ namespace GIDE
 			this->project_fs_model_columns.icon
 		);
 
-		this->add_column_to_project_view(
+		auto row = this->add_column_to_project_view(
 			TreeFileSystem::TreeEntry("project.pro")
+		);
+		this->add_column_to_project_view(
+			TreeFileSystem::TreeEntry("README.md"),
+			row
 		);
 
 		viewport->add(this->source_view);
-		panels->set_position(100);
+		panels->set_position(200);
 
 		this->show_all();
 	}
@@ -136,7 +140,7 @@ namespace GIDE
 		return window;
 	}
 
-	void ApplicationWindow::add_column_to_project_view(
+	Gtk::TreeModel::Row ApplicationWindow::add_column_to_project_view(
 		const TreeFileSystem::TreeEntry& entry
 	)
 	{
@@ -144,5 +148,22 @@ namespace GIDE
 		row[this->project_fs_model_columns.icon] = entry.icon;
 		row[this->project_fs_model_columns.filetype] = entry.filetype;
 		row[this->project_fs_model_columns.filename] = entry.filename;
+
+		return row;
+	}
+
+	Gtk::TreeModel::Row ApplicationWindow::add_column_to_project_view(
+		const TreeFileSystem::TreeEntry& entry,
+		const Gtk::TreeModel::Row& rw
+	)
+	{
+		Gtk::TreeModel::Row row = *this->project_fs_model->append(
+			rw.children()
+		);
+		row[this->project_fs_model_columns.icon] = entry.icon;
+		row[this->project_fs_model_columns.filetype] = entry.filetype;
+		row[this->project_fs_model_columns.filename] = entry.filename;
+
+		return row;
 	}
 }

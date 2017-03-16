@@ -45,7 +45,14 @@ namespace GIDE
 			static ApplicationWindow* create(void);
 
 		protected:
-			void add_column_to_project_view(const TreeFileSystem::TreeEntry& entry);
+			Gtk::TreeModel::Row add_column_to_project_view(
+				const TreeFileSystem::TreeEntry& entry
+			);
+
+			Gtk::TreeModel::Row add_column_to_project_view(
+				const TreeFileSystem::TreeEntry& entry,
+				const Gtk::TreeModel::Row& rw
+			);
 
 		private:
 			Glib::RefPtr<Gtk::Builder> ref_builder;
