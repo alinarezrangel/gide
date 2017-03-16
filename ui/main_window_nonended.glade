@@ -2,6 +2,180 @@
 <!-- Generated with glade 3.20.0 -->
 <interface>
   <requires lib="gtk+" version="3.20"/>
+  <object class="GtkPopoverMenu" id="contextpopover">
+    <property name="can_focus">True</property>
+    <property name="relative_to">contextbutton</property>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="margin">10</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.new_project</property>
+            <property name="text" translatable="yes">New Project</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.new_file</property>
+            <property name="text" translatable="yes">New File</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.open_project</property>
+            <property name="text" translatable="yes">Open Project</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.open_file</property>
+            <property name="text" translatable="yes">Open File</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.save_project</property>
+            <property name="text" translatable="yes">Save Project</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.save_file</property>
+            <property name="text" translatable="yes">Save File</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.exit</property>
+            <property name="text" translatable="yes">Exit</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="menu-name">tools</property>
+            <property name="text" translatable="yes">Tools</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="menu-name">properties</property>
+            <property name="text" translatable="yes">Properties</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">main</property>
+        <property name="position">1</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="margin">10</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="menu-name">main</property>
+            <property name="inverted">true</property>
+            <property name="text" translatable="yes">Properties</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.change_theme</property>
+            <property name="text" translatable="yes">Theme</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.tools_configuration</property>
+            <property name="text" translatable="yes">Tools Configuration</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">properties</property>
+        <property name="position">2</property>
+      </packing>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="visible">True</property>
+        <property name="margin">10</property>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="menu-name">main</property>
+            <property name="inverted">true</property>
+            <property name="text" translatable="yes">Tools</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.open_glade</property>
+            <property name="text" translatable="yes">Open Glade Designer</property>
+          </object>
+        </child>
+        <child>
+          <object class="GtkModelButton">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="receives_default">False</property>
+            <property name="action-name">win.open_build_tools</property>
+            <property name="text" translatable="yes">Build tools</property>
+          </object>
+        </child>
+      </object>
+      <packing>
+        <property name="submenu">tools</property>
+        <property name="position">3</property>
+      </packing>
+    </child>
+  </object>
   <object class="GtkApplicationWindow" id="main_window">
     <property name="can_focus">False</property>
     <property name="destroy_with_parent">True</property>
@@ -48,7 +222,16 @@
         <property name="subtitle">GTK+ 3 IDE</property>
         <property name="show_close_button">True</property>
         <child>
-          <placeholder/>
+          <object class="GtkMenuButton" id="contextbutton">
+            <property name="visible">True</property>
+            <property name="can_focus">True</property>
+            <property name="receives_default">True</property>
+            <property name="relief">none</property>
+            <property name="popover">contextpopover</property>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
         </child>
       </object>
     </child>
