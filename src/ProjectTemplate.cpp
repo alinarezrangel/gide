@@ -36,7 +36,10 @@ namespace GIDE
 	ProjectTemplate::~ProjectTemplate(void)
 	{}
 
-	void ProjectTemplate::create_template(Glib::RefPtr<ProjectFolder> folder)
+	void ProjectTemplate::create_template(
+		Glib::RefPtr<ProjectFolder> folder,
+		const ProjectMetadata& metadata
+	)
 	{
 		return;
 	}
@@ -77,7 +80,10 @@ namespace GIDE
 		BasicCPPTemplate::~BasicCPPTemplate(void)
 		{}
 
-		void BasicCPPTemplate::create_template(Glib::RefPtr<ProjectFolder> folder)
+		void BasicCPPTemplate::create_template(
+			Glib::RefPtr<ProjectFolder> folder,
+			const ProjectMetadata& metadata
+		)
 		{
 			this->fill_file(folder, "hello.world.txt", "Hello World\n");
 		}

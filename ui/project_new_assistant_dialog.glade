@@ -4,6 +4,7 @@
   <requires lib="gtk+" version="3.20"/>
   <object class="GtkAssistant" id="main_window">
     <property name="can_focus">False</property>
+    <property name="title" translatable="yes">New Project Assistant</property>
     <property name="destroy_with_parent">True</property>
     <property name="use_header_bar">1</property>
     <child>
@@ -66,30 +67,26 @@
                     <property name="margin_top">19</property>
                     <property name="margin_bottom">16</property>
                     <child>
-                      <object class="GtkToggleButton" id="project_template_basic_gtk">
-                        <property name="label" translatable="yes">Basic GTK+ project</property>
+                      <object class="GtkLabel">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="label" translatable="yes">Project template</property>
                       </object>
                       <packing>
-                        <property name="expand">True</property>
+                        <property name="expand">False</property>
                         <property name="fill">True</property>
-                        <property name="padding">12</property>
                         <property name="position">0</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkToggleButton" id="project_template_basic_gtkmm">
-                        <property name="label" translatable="yes">Basic GTKmm project</property>
+                      <object class="GtkComboBox" id="project_template">
                         <property name="visible">True</property>
-                        <property name="can_focus">True</property>
-                        <property name="receives_default">True</property>
+                        <property name="can_focus">False</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
                         <property name="fill">True</property>
-                        <property name="padding">12</property>
+                        <property name="padding">7</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -365,6 +362,10 @@
         <property name="has_padding">False</property>
       </packing>
     </child>
+    <child>
+      <placeholder/>
+    </child>
+		<!--
     <child internal-child="action_area">
       <object class="GtkBox">
         <property name="can_focus">False</property>
@@ -423,17 +424,6 @@
         <property name="has_padding">False</property>
       </packing>
     </child>
-    <child type="titlebar">
-      <object class="GtkHeaderBar">
-        <property name="visible">True</property>
-        <property name="can_focus">False</property>
-        <property name="title">New Project assistant</property>
-        <property name="subtitle">Follow the instructions to create a new project</property>
-        <property name="show_close_button">True</property>
-        <child>
-          <placeholder/>
-        </child>
-      </object>
-    </child>
+		-->
   </object>
 </interface>

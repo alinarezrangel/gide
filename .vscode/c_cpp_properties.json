@@ -1,0 +1,118 @@
+{
+	"C_Cpp.intelliSenseEngine": "Default",
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "/usr/include",
+                "/usr/local/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/usr/include",
+                    "/usr/local/include",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            },
+            "macFrameworkPath": [
+                "/System/Library/Frameworks",
+                "/Library/Frameworks"
+            ]
+        },
+        {
+            "name": "Linux",
+            "includePath": [
+                "/usr/include/c++/5.4.0",
+                "/usr/include/x86_64-linux-gnu/c++/5.4.0",
+                "/usr/local/include",
+                "/usr/lib/clang/3.8.0/include",
+                "/usr/include",
+                "/usr/include/x86_64-linux-gnu",
+                "/usr/include/gtkmm-3.0",
+                "/usr/lib/x86_64-linux-gnu/gtkmm-3.0/include",
+                "/usr/include/gtk-3.0/unix-print",
+                "/usr/include/gdkmm-3.0",
+                "/usr/lib/x86_64-linux-gnu/gdkmm-3.0/include",
+                "/usr/include/giomm-2.4",
+                "/usr/lib/x86_64-linux-gnu/giomm-2.4/include",
+                "/usr/include/pangomm-1.4",
+                "/usr/lib/x86_64-linux-gnu/pangomm-1.4/include",
+                "/usr/include/gtk-3.0",
+                "/usr/include/at-spi2-atk/2.0",
+                "/usr/include/at-spi-2.0",
+                "/usr/include/dbus-1.0",
+                "/usr/lib/x86_64-linux-gnu/dbus-1.0/include",
+                "/usr/include/gtk-3.0",
+                "/usr/include/gio-unix-2.0/",
+                "/usr/include/mirclient",
+                "/usr/include/mircore",
+                "/usr/include/mircookie",
+                "/usr/include/cairo",
+                "/usr/include/pango-1.0",
+                "/usr/include/harfbuzz",
+                "/usr/include/pango-1.0",
+                "/usr/include/cairo",
+                "/usr/include/cairomm-1.0",
+                "/usr/lib/x86_64-linux-gnu/cairomm-1.0/include",
+                "/usr/include/cairo",
+                "/usr/include/pixman-1",
+                "/usr/include/freetype2",
+                "/usr/include/libpng12",
+                "/usr/include/gdk-pixbuf-2.0",
+                "/usr/include/libpng12",
+                "/usr/include/atkmm-1.6",
+                "/usr/include/atk-1.0",
+                "/usr/include/glibmm-2.4",
+                "/usr/lib/x86_64-linux-gnu/glibmm-2.4/include",
+                "/usr/include/glib-2.0",
+                "/usr/lib/x86_64-linux-gnu/glib-2.0/include",
+                "/usr/include/sigc++-2.0",
+                "/usr/lib/x86_64-linux-gnu/sigc++-2.0/include",
+                "${workspaceRoot}",
+                "${workspaceRoot}/include/"
+            ],
+            "defines": [],
+            "intelliSenseMode": "clang-x64",
+            "browse": {
+                "path": [
+                    "/usr/include/c++/5.4.0",
+                    "/usr/include/x86_64-linux-gnu/c++/5.4.0",
+                    "/usr/local/include",
+                    "/usr/lib/clang/3.8.0/include",
+                    "/usr/include",
+                    "/usr/include/x86_64-linux-gnu",
+                    "/usr/include/gtkmm-3.0",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include",
+                "${workspaceRoot}"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE"
+            ],
+            "intelliSenseMode": "msvc-x64",
+            "browse": {
+                "path": [
+                    "C:/Program Files (x86)/Microsoft Visual Studio 14.0/VC/include/*",
+                    "${workspaceRoot}"
+                ],
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": ""
+            }
+        }
+    ],
+    "version": 3
+}

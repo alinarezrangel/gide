@@ -31,6 +31,7 @@
 
 #include "Macros.hpp"
 #include "ProjectFolder.hpp"
+#include "ProjectMetadata.hpp"
 
 namespace GIDE
 {
@@ -70,7 +71,10 @@ namespace GIDE
 			*
 			* @param folder Root folder in which the project should be created.
 			*/
-			virtual void create_template(Glib::RefPtr<ProjectFolder> folder);
+			virtual void create_template(
+				Glib::RefPtr<ProjectFolder> folder,
+				const ProjectMetadata& metadata
+			);
 
 			/**
 			* @brief Gets the name of the template.
@@ -134,7 +138,10 @@ namespace GIDE
 				BasicCPPTemplate(void);
 				virtual ~BasicCPPTemplate(void);
 
-				virtual void create_template(Glib::RefPtr<ProjectFolder> folder);
+				virtual void create_template(
+					Glib::RefPtr<ProjectFolder> folder,
+					const ProjectMetadata& metadata
+				);
 		};
 	}
 }

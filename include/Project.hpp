@@ -26,29 +26,17 @@
 #include <clocale>
 
 #include <list>
+#include <map>
 
 #include <boost/filesystem.hpp>
 
 #include "Macros.hpp"
+#include "ProjectMetadata.hpp"
 #include "ProjectFolder.hpp"
 #include "ProjectTemplate.hpp"
 
 namespace GIDE
 {
-	/**
-	* @brief Contains the metadata of any project.
-	*/
-	struct ProjectMetadata
-	{
-		Glib::ustring project_name;
-		Glib::ustring project_author;
-		Glib::ustring project_language;
-
-		Glib::ustring gide_version;
-
-		Glib::ustring build_system;
-	};
-
 	/**
 	* @brief The project class manages a GIDE project.
 	*/
@@ -109,7 +97,7 @@ namespace GIDE
 			*/
 			bool create(
 				const Glib::ustring& path_to_folder,
-				ProjectTemplate& tplt,
+				std::shared_ptr<ProjectTemplate> tplt,
 				const ProjectMetadata& meta
 			);
 

@@ -12,12 +12,14 @@ GTKSOURCEVIEW_LIBS=`pkg-config --libs gtksourceviewmm-3.0`
 CFLAGS=-std=c++11 -g -Wall -Iinclude $(BOOST_CFLAGS) $(GTKMM_CFLAGS) $(GTKSOURCEVIEW_CFLAGS)
 CLIBS=$(BOOST_LIBS) $(GTKMM_LIBS) $(GTKSOURCEVIEW_LIBS)
 
-TARGET=gide.out
-
 SRC=src
 INC=include
+LIBS=libs
+BIN=bin
 
-OBJS=Application.o ApplicationWindow.o FileSystemTreeModel.o ProjectFolder.o ProjectTemplate.o Project.o
+TARGET=$(BIN)/gide.out
+
+OBJS=Application.o ApplicationWindow.o FileSystemTreeModel.o ProjectFolder.o ProjectTemplate.o Project.o ProjectMetadata.o NewProjectAssistant.o NewProjectAssistantModel.o Exceptions.o
 
 TAGSFILE=TAGS
 
@@ -42,8 +44,23 @@ ProjectTemplate.o: $(SRC)/ProjectTemplate.cpp $(INC)/ProjectTemplate.hpp
 Project.o: $(SRC)/Project.cpp $(INC)/Project.hpp
 	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
 
+ProjectMetadata.o: $(SRC)/ProjectMetadata.cpp $(INC)/ProjectMetadata.hpp
+	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
+
+NewProjectAssistant.o: $(SRC)/NewProjectAssistant.cpp $(INC)/NewProjectAssistant.hpp
+	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
+
+NewProjectAssistantModel.o: $(SRC)/NewProjectAssistantModel.cpp $(INC)/NewProjectAssistantModel.hpp
+	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
+
+Exceptions.o: $(SRC)/Exceptions.cpp $(INC)/Exceptions.hpp
+	$(CXX) -c $(CFLAGS) $< $(CLIBS) -o $@
+
 tags:
 	etags src/*.cpp include/*.hpp
+
+libs: $(OBJS)
+	mv $(OBJS) $(LIBS)
 
 clean:
 	rm $(OBJS) $(TARGET) $(TAGSFILE)

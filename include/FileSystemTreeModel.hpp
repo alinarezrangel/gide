@@ -47,7 +47,7 @@ namespace GIDE
 			FILE_PROJECT, // pro
 			FILE_GLADE, // glade, ui, xml
 			FILE_GIT, // .gitignore, .gitkeep, etc
-			FILE_INFO // md, mkd, markdown
+			FILE_MARKDOWN // md, mkd, markdown
 		};
 
 		Glib::ustring get_iconname_from_filetype(FileType tp);
@@ -61,7 +61,7 @@ namespace GIDE
 			Gtk::TreeModelColumn<Glib::ustring> filename;
 		};
 
-		struct TreeEntry
+		struct TreeEntry : public Glib::Object
 		{
 			TreeEntry(void);
 			TreeEntry(FileType ft);

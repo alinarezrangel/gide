@@ -5,13 +5,17 @@ IDE and creates the GUI with Glade. Now this ends. GIDE includes features
 like code generation, projects and others that make development with
 GTK+ 3 easy and intuitive.
 
+**Note**: This project is incomplete. For now, it's basically just an
+application template for GTK+ 3. If you want to help, you can make a pull
+request.
+
 ## Features ##
 
 - [ ] Projects
 - [ ] Code Generation
 - [ ] Support for C and C++
 - [ ] GUI designer
-- [ x ] GTKSourceView
+- [x] GTKSourceView
 
 ## Project structure ##
 
@@ -38,3 +42,4 @@ We use the [contributor covenant code of conduct](CODEOFCONDUCT.md)
 
 See the [LICENSE file](LICENSE).
 
+[contribute]: https://github.com/alinarezrangel/gide/issues

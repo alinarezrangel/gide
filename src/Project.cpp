@@ -23,13 +23,13 @@ namespace GIDE
 	Project::Project(void)
 		: valid(false),
 			project_directory(nullptr),
-			metadata({"", "", "", "", ""})
+			metadata()
 	{}
 
 	Project::Project(const Glib::ustring& path_to_folder)
 		: valid(true),
 			project_directory(ProjectFolder::create_from_path(path_to_folder)),
-			metadata({"", "", "", "", ""})
+			metadata()
 	{}
 
 	Project::Project(const Project& copy)
@@ -59,7 +59,7 @@ namespace GIDE
 
 	bool Project::create(
 		const Glib::ustring& path_to_folder,
-		ProjectTemplate& tplt,
+		std::shared_ptr<ProjectTemplate> tplt,
 		const ProjectMetadata& meta
 	)
 	{
@@ -71,7 +71,7 @@ namespace GIDE
 
 		this->project_directory = ProjectFolder::create_from_path(path_to_folder);
 
-		tplt.create_template(this->project_directory);
+		tplt->create_template(this->project_directory, meta);
 
 		Glib::KeyFile project_file;
 
@@ -174,23 +174,57 @@ namespace GIDE
 
 	void Project::read_project_metadata(Glib::KeyFile& file)
 	{
+		std::map<Glib::ustring, ProjectProgrammingLanguages> pl_map = {
+			{"cpp", ProjectProgrammingLanguages::CPP},
+			{"cpp1x", ProjectProgrammingLanguages::CPP1X},
+			{"c", ProjectProgrammingLanguages::C},
+			{"c1x", ProjectProgrammingLanguages::C1X}
+		};
+
+		std::map<Glib::ustring, ProjectBuildSystems> bs_map = {
+			{"make", ProjectBuildSystems::MAKE},
+			{"cmake", ProjectBuildSystems::CMAKE}
+		};
+
 		this->metadata.project_name = file.get_string("Project", "Name");
 		this->metadata.project_author = file.get_string("Project", "Author");
-		this->metadata.project_language = file.get_string("Project", "Language");
+		this->metadata.project_language =
+			pl_map[file.get_string("Project", "Language")];
 
 		this->metadata.gide_version = file.get_string("GIDE", "Version");
 
-		this->metadata.build_system = file.get_string("Build", "System");
+		this->metadata.build_system =
+			bs_map[file.get_string("Build", "System")];
 	}
 
 	void Project::save_project_metadata(Glib::KeyFile& file)
 	{
+		std::map<ProjectProgrammingLanguages, Glib::ustring> pl_map = {
+			{ProjectProgrammingLanguages::CPP, "cpp"},
+			{ProjectProgrammingLanguages::CPP1X, "cpp1x"},
+			{ProjectProgrammingLanguages::C, "c"},
+			{ProjectProgrammingLanguages::C1X, "c1x"}
+		};
+
+		std::map<ProjectBuildSystems, Glib::ustring> bs_map = {
+			{ProjectBuildSystems::MAKE, "make"},
+			{ProjectBuildSystems::CMAKE, "cmake"}
+		};
+
 		file.set_string("Project", "Name", this->metadata.project_name);
 		file.set_string("Project", "Author", this->metadata.project_author);
-		file.set_string("Project", "Language", this->metadata.project_language);
+		file.set_string(
+			"Project",
+			"Language",
+			pl_map[this->metadata.project_language]
+		);
 
 		file.set_string("GIDE", "Version", this->metadata.gide_version);
 
-		file.set_string("Build", "System", this->metadata.build_system);
+		file.set_string(
+			"Build",
+			"System",
+			bs_map[this->metadata.build_system]
+		);
 	}
 }

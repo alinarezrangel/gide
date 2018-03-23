@@ -24,11 +24,22 @@
 
 #include <clocale>
 
+#include <exception>
+#include <stdexcept>
+
 #include "Macros.hpp"
+#include "Exceptions.hpp"
 #include "Project.hpp"
+#include "NewProjectAssistantModel.hpp"
 
 namespace GIDE
 {
+	/**
+	* @brief An assistant to help users when creating projects.
+	*
+	* This should be used to guide users step-by-step in the process of creating
+	* projects.
+	*/
 	class NewProjectAssistant : public Gtk::Assistant
 	{
 		public:
@@ -39,9 +50,63 @@ namespace GIDE
 			);
 			virtual ~NewProjectAssistant(void);
 
-			//
+			/**
+			* @brief Gets the project metadata from the user.
+			*/
+			ProjectMetadata get_project_metadata(void);
+			Glib::ustring get_project_path(void);
+			std::shared_ptr<ProjectTemplate> get_project_template(void);
 
 			static NewProjectAssistant* create(void);
+
+		protected:
+			template<class T_Widget>
+			void ThrowIfNull(
+				T_Widget* widget,
+				const Glib::ustring& ui_name,
+				const Glib::ustring& ui_widget
+			)
+			{
+				if(!widget)
+				{
+					throw std::runtime_error(
+						"(NewProjectAssistant) No " + ui_widget + " named " + ui_name +
+						" in the UI file"
+					);
+				}
+			}
+
+		private:
+			Glib::ustring path; //< Path to the project
+			ProjectMetadata metadata; //< Project's metadata
+			std::shared_ptr<ProjectTemplate> templt; //< Project's template to use
+
+			Gtk::Entry* project_name_entry;
+			Gtk::Entry* project_author_entry;
+			Gtk::ComboBox* project_template_combo;
+			Gtk::ComboBox* project_language_combo;
+			Gtk::ComboBox* project_build_system_combo;
+			Gtk::FileChooserWidget* project_select_folder;
+
+			Gtk::Box* first_page;
+			Gtk::Frame* second_page;
+			Gtk::Frame* third_page;
+			Gtk::Frame* fourth_page;
+			Gtk::Frame* fiveth_page;
+
+			// These are the models and columns used to fill the UI comboboxes.
+			Glib::RefPtr<Gtk::ListStore> template_model;
+			Glib::RefPtr<Gtk::ListStore> language_model;
+			Glib::RefPtr<Gtk::ListStore> build_system_model;
+
+			NewProjectAssistantModels::ProgrammingLanguage::ModelColumn
+				programming_language_column;
+
+			NewProjectAssistantModels::BuildSystem::ModelColumn
+				build_system_column;
+
+			NewProjectAssistantModels::ProjectTemplateNS::ModelColumn
+				project_template_column;
 	};
 }
 

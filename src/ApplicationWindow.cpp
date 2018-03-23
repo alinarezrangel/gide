@@ -35,7 +35,8 @@ namespace GIDE
 			project_fs_model_columns(),
 			new_project_action(
 				Gio::SimpleAction::create("new_project")
-			)
+			),
+			assistant(nullptr)
 	{
 		this->project_fs_model = Gtk::TreeStore::create(project_fs_model_columns);
 
@@ -47,7 +48,8 @@ namespace GIDE
 		this->source_view.set_auto_indent(true);
 		this->source_view.set_insert_spaces_instead_of_tabs(false);
 		this->source_view.set_show_right_margin(true);
-		this->source_view.set_highlight_current_line(true);
+		// TODO this line should be changed according to a setting:
+		this->source_view.set_highlight_current_line(false);
 		this->source_view.set_indent_on_tab(true);
 		this->source_view.set_monospace(true);
 		this->source_view.set_right_margin_position(80);
@@ -90,11 +92,6 @@ namespace GIDE
 			_("Icon"),
 			this->project_fs_rendererpb
 		);
-		filesystem_view->append_column_numeric(
-			_("Type"),
-			this->project_fs_model_columns.filetype,
-			"%d"
-		);
 		filesystem_view->append_column(
 			_("Filename"),
 			this->project_fs_model_columns.filename
@@ -110,7 +107,10 @@ namespace GIDE
 			TreeFileSystem::TreeEntry("project.pro")
 		);
 		this->add_column_to_project_view(
-			TreeFileSystem::TreeEntry("README.md"),
+			TreeFileSystem::TreeEntry(
+				TreeFileSystem::FileType::FILE_MARKDOWN,
+				"README.md"
+			),
 			row
 		);
 
@@ -182,30 +182,68 @@ namespace GIDE
 		const Glib::VariantBase& param
 	)
 	{
+		if(this->assistant)
+			return;
+
+		this->assistant = NewProjectAssistant::create();
+		this->assistant->set_modal(true);
+		this->assistant->set_transient_for(*this);
+
+		this->assistant->signal_apply().connect(
+			sigc::mem_fun(
+				this,
+				&ApplicationWindow::on_new_project_assistant_done
+			)
+		);
+
+		this->assistant->signal_close().connect(
+			sigc::mem_fun(
+				this,
+				&ApplicationWindow::on_new_project_assistant_cancel_close
+			)
+		);
+
+		this->assistant->signal_cancel().connect(
+			sigc::mem_fun(
+				this,
+				&ApplicationWindow::on_new_project_assistant_cancel_close
+			)
+		);
+
+		this->assistant->show();
+	}
+
+	void ApplicationWindow::on_new_project_assistant_done(void)
+	{
+		// Use the assistant created in on_new_project_action to get the selected
+		// data:
+
+		if(!this->assistant)
+			return;
+
 		Project new_project;
 		ProjectMetadata metadata;
 
-		Gtk::FileChooserDialog file_dialog(
-			*this,
-			_("Select a folder for create the new project"),
-			Gtk::FILE_CHOOSER_ACTION_CREATE_FOLDER
+		new_project.create(
+			assistant->get_project_path(),
+			assistant->get_project_template(),
+			assistant->get_project_metadata()
 		);
 
-		file_dialog.set_modal(true);
+		delete this->assistant;
 
-		int response = file_dialog.run();
+		this->assistant = nullptr;
+	}
 
-		if(response != Gtk::RESPONSE_ACCEPT)
+	void ApplicationWindow::on_new_project_assistant_cancel_close(void)
+	{
+		if(!this->assistant)
 			return;
 
-		Glib::ustring filename = Glib::ustring::filename_to_utf8(
-			file_dialog.get_filename()
-		);
+		this->assistant->close();
 
-		new_project.create(
-			filename,
-			BuiltinProjectTemplates::BasicCPPTemplate,
-			metadata
-		);
+		delete this->assistant;
+
+		this->assistant = nullptr;
 	}
 }

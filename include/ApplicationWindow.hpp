@@ -30,19 +30,36 @@
 
 #include "Macros.hpp"
 #include "FileSystemTreeModel.hpp"
+#include "NewProjectAssistant.hpp"
 #include "Project.hpp"
 
 namespace GIDE
 {
+	/**
+	* @brief The main window of the application.
+	*/
 	class ApplicationWindow : public Gtk::ApplicationWindow
 	{
 		public:
+			/**
+			* @brief Contructs an Application Window.
+			*
+			* Is designed for internal use only by Gtk::Builder.
+			*/
 			explicit ApplicationWindow(
 				BaseObjectType* c_object,
 				const Glib::RefPtr<Gtk::Builder>& ref_builder
 			);
+			/**
+			* @brief Destroyes an Application Window.
+			*/
 			virtual ~ApplicationWindow(void);
 
+			/**
+			* @brief Creates an Application Window.
+			*
+			* @return The new ApplicationWindow.
+			*/
 			static ApplicationWindow* create(void);
 
 		protected:
@@ -56,6 +73,8 @@ namespace GIDE
 			);
 
 			virtual void on_new_project_action(const Glib::VariantBase& param);
+			virtual void on_new_project_assistant_done(void);
+			virtual void on_new_project_assistant_cancel_close(void);
 
 		private:
 			Glib::RefPtr<Gtk::Builder> ref_builder;
@@ -68,6 +87,8 @@ namespace GIDE
 			Gtk::CellRendererPixbuf project_fs_rendererpb;
 
 			Glib::RefPtr<Gio::SimpleAction> new_project_action;
+
+			NewProjectAssistant* assistant;
 	};
 }
 

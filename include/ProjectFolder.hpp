@@ -30,6 +30,7 @@
 #include <boost/filesystem.hpp>
 
 #include "Macros.hpp"
+#include "ProjectMetadata.hpp"
 
 namespace GIDE
 {
